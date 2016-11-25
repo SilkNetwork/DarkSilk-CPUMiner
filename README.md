@@ -66,6 +66,7 @@ Algorithms
  * ? luffa (Joincoin, Doomcoin)
  * ? shavite3 (INKcoin)
  * ? xevan (BitSend [BSD])
+ * ? argon2d (DarkSilk and Dynamic)
 
 #### Planned support for
  * *scrypt-jane* (YaCoin, CopperBars, Pennies, Tickets, etc..)
