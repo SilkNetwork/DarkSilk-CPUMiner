@@ -171,4 +171,4 @@ CPUMiner-multi was forked from pooler's CPUMiner, and has been started by Lucas 
 
 License
 =======
-GPLv2.  See COPYING for details.
+GPLv2.  See COPYING for details. 
