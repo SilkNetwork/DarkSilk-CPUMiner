@@ -13,4 +13,10 @@ before_script:
 script:
   - ./configure --with-crypto --with-curl
   - make
-  - ./cpuminer --cputest
+
+deploy:
+  provider: releases
+  file: "cpuminer"
+  skip_cleanup: true
+  on:
+    tags: true
