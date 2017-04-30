@@ -20,6 +20,7 @@ fork of [pooler](//github.com/pooler)'s cpuminer (see AUTHORS for list of contri
 Algorithms
 ==========
 #### Currently supported
+ * ✓ __argon2d_ (Dynamic)
  * ✓ __scrypt__ (Litecoin, Dogecoin, Feathercoin, ...)
  * ✓ __scrypt:N__
  * ✓ __scrypt-jane:N__
@@ -170,4 +171,4 @@ CPUMiner-multi was forked from pooler's CPUMiner, and has been started by Lucas 
 
 License
 =======
-GPLv2.  See COPYING for details.
+GPLv2.  See COPYING for details. 

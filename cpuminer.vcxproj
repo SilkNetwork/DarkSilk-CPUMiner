@@ -195,6 +195,7 @@
     <ClCompile Include="crypto\oaes_lib.c" />
     <ClCompile Include="lyra2\Lyra2.c" />
     <ClCompile Include="lyra2\Sponge.c" />
+    <ClCompile Include="crypto\blake2b.c" />
     <ClCompile Include="crypto\blake2s.c" />
     <ClCompile Include="sha3\sph_hefty1.c" />
     <ClCompile Include="uint256.cpp" />
@@ -230,6 +231,7 @@
     <ClCompile Include="algo\qubit.c" />
     <ClCompile Include="algo\s3.c" />
     <ClCompile Include="algo\sha2.c" />
+    <ClCompile Include="algo\sia.c" />
     <ClCompile Include="algo\scrypt.c">
       <Optimization Condition="'$(Configuration)'=='Release'">Full</Optimization>
     </ClCompile>
@@ -326,6 +328,22 @@
     <ClInclude Include="scryptjane\scrypt-jane-romix.h" />
     <ClInclude Include="scryptjane\scrypt-jane-salsa.h" />
     <ClInclude Include="scryptjane\scrypt-jane-test-vectors.h" />
+    <ClInclude Include="argon2d\blake2-impl.h" />
+    <ClInclude Include="argon2d\blake2.h" />
+    <ClInclude Include="argon2d\blamka-round-opt.h" />
+    <ClInclude Include="argon2d\blamka-round-ref.h" />
+    <ClInclude Include="argon2d\blake2b.c" />
+    <ClInclude Include="argon2d\argon2.h" />
+    <ClInclude Include="argon2d\blake2-impl.h" />
+    <ClInclude Include="argon2d\core.h" />
+    <ClInclude Include="argon2d\encoding.h" />
+    <ClInclude Include="argon2d\thread.h" />
+    <ClInclude Include="argon2d\opt.h" />
+    <ClInclude Include="argon2d\argon2.c" />
+    <ClInclude Include="argon2d\core.c" />
+    <ClInclude Include="argon2d\encoding.c" />
+    <ClInclude Include="argon2d\thread.c" />
+    <ClInclude Include="argon2d\opt.c" />
     <ClInclude Include="sha3\sph_blake.h" />
     <ClInclude Include="sha3\sph_bmw.h" />
     <ClInclude Include="sha3\sph_cubehash.h" />
