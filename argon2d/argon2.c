@@ -265,7 +265,7 @@ int argon2i_hash_raw(const uint32_t t_cost, const uint32_t m_cost,
                        hash, hashlen, NULL, 0, Argon2_i);
 }
 
-int argon2d_hardhash_encoded(const uint32_t t_cost, const uint32_t m_cost,
+int argon2_dyn2hash_encoded(const uint32_t t_cost, const uint32_t m_cost,
                          const uint32_t parallelism, const void *pwd,
                          const size_t pwdlen, const void *salt,
                          const size_t saltlen, const size_t hashlen,
@@ -275,7 +275,7 @@ int argon2d_hardhash_encoded(const uint32_t t_cost, const uint32_t m_cost,
                        NULL, hashlen, encoded, encodedlen, Argon2_d);
 }
 
-int argon2d_hardhash_raw(const uint32_t t_cost, const uint32_t m_cost,
+int argon2_dyn2hash_raw(const uint32_t t_cost, const uint32_t m_cost,
                      const uint32_t parallelism, const void *pwd,
                      const size_t pwdlen, const void *salt,
                      const size_t saltlen, void *hash, const size_t hashlen) {
@@ -408,7 +408,7 @@ const char *error_message(int error_code) {
     return "Unknown error code.";
 }
 
-void argon2d_easy_hash(void *state, const void *input)
+void argon2_dyn1_hash(void *state, const void *input)
 {
 
     argon2_context context;
@@ -426,14 +426,14 @@ void argon2d_easy_hash(void *state, const void *input)
     context.free_cbk = NULL;
     context.flags = 2; // = ARGON2_DEFAULT_FLAGS
     // main configurable Argon2 hash parameters
-    context.m_cost = 1024; // Memory in KB
-    context.lanes = 2;    // Degree of Parallelism
-    context.threads = 2;  // Threads
+    context.m_cost = 250; // Memory in KB
+    context.lanes = 4;    // Degree of Parallelism
+    context.threads = 1;  // Threads
     context.t_cost = 1;   // Iterations
     argon2_core(&context, Argon2_d);
 }
 
-void argon2d_hard_hash(void *state, const void *input)
+void argon2_dyn2_hash(void *state, const void *input)
 {
 
     argon2_context context;
@@ -451,14 +451,14 @@ void argon2d_hard_hash(void *state, const void *input)
     context.free_cbk = NULL;
     context.flags = 2; // = ARGON2_DEFAULT_FLAGS
     // main configurable Argon2 hash parameters
-    context.m_cost = 1024; // Memory in KB
+    context.m_cost = 250; // Memory in KB
     context.lanes = 64;    // Degree of Parallelism
-    context.threads = 4;  // Threads
-    context.t_cost = 8;    // Iterations
+    context.threads = 1;  // Threads
+    context.t_cost = 1;    // Iterations
     argon2_core(&context, Argon2_d);
 }
 
-int scanhash_argon2d_easy(int thr_id, struct work *work, uint32_t max_nonce, uint64_t *hashes_done)
+int scanhash_argon2_dyn1(int thr_id, struct work *work, uint32_t max_nonce, uint64_t *hashes_done)
 {
     uint32_t _ALIGN(128) hash32[8];
     uint32_t _ALIGN(128) endiandata[20];
@@ -476,7 +476,7 @@ int scanhash_argon2d_easy(int thr_id, struct work *work, uint32_t max_nonce, uin
 
     do {
         be32enc(&endiandata[19], n);
-        argon2d_easy_hash(hash32, endiandata);
+        argon2_dyn1_hash(hash32, endiandata);
         if (hash32[7] < Htarg && fulltest(hash32, ptarget)) {
             work_set_target_ratio(work, hash32);
             *hashes_done = n - first_nonce + 1;
@@ -493,7 +493,7 @@ int scanhash_argon2d_easy(int thr_id, struct work *work, uint32_t max_nonce, uin
     return 0;
 }
 
-int scanhash_argon2d_hard(int thr_id, struct work *work, uint32_t max_nonce, uint64_t *hashes_done)
+int scanhash_argon2_dyn2(int thr_id, struct work *work, uint32_t max_nonce, uint64_t *hashes_done)
 {
     uint32_t _ALIGN(128) hash32[8];
     uint32_t _ALIGN(128) endiandata[20];
@@ -511,7 +511,7 @@ int scanhash_argon2d_hard(int thr_id, struct work *work, uint32_t max_nonce, uin
 
     do {
         be32enc(&endiandata[19], n);
-        argon2d_hard_hash(hash32, endiandata);
+        argon2_dyn2_hash(hash32, endiandata);
         if (hash32[7] < Htarg && fulltest(hash32, ptarget)) {
             work_set_target_ratio(work, hash32);
             *hashes_done = n - first_nonce + 1;

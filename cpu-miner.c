@@ -130,8 +130,8 @@ enum algos {
 };
 
 static const char *algo_names[] = {
-	"argon2d_easy",
-	"argon2d_hard",
+	"argon2_dyn1",
+	"argon2_dyn2",
 	"keccak",
 	"heavy",
 	"neoscrypt",
@@ -283,8 +283,8 @@ static char const usage[] = "\
 Usage: " PACKAGE_NAME " [OPTIONS]\n\
 Options:\n\
   -a, --algo=ALGO       specify the algorithm to use\n\
-  						  argon2d_easy    Argon2d with easy parameters\n\
-  						  argon2d_hard    Argon2d with hard parameters\n\
+  						  argon2_dyn1    Argon2d with easy parameters\n\
+  						  argon2_dyn2    Argon2d with hard parameters\n\
                           axiom        Shabal-256 MemoHash\n\
                           blake        Blake-256 14-rounds (SFR)\n\
                           blakecoin    Blake-256 single sha256 merkle\n\
@@ -2170,10 +2170,10 @@ static void *miner_thread(void *userdata)
 			rc = scanhash_axiom(thr_id, &work, max_nonce, &hashes_done);
 			break;
 		case ALGO_ARGON2D_E:
-			rc = scanhash_argon2d_easy(thr_id, &work, max_nonce, &hashes_done);
+			rc = scanhash_argon2_dyn1(thr_id, &work, max_nonce, &hashes_done);
 			break;
 		case ALGO_ARGON2D_H:
-			rc = scanhash_argon2d_hard(thr_id, &work, max_nonce, &hashes_done);
+			rc = scanhash_argon2_dyn2(thr_id, &work, max_nonce, &hashes_done);
 			break;
 		case ALGO_BASTION:
 			rc = scanhash_bastion(thr_id, &work, max_nonce, &hashes_done);

@@ -20,6 +20,7 @@ fork of [pooler](//github.com/pooler)'s cpuminer (see AUTHORS for list of contri
 Algorithms
 ==========
 #### Currently supported
+ * ✓ __argon2d_ (Dynamic)
  * ✓ __scrypt__ (Litecoin, Dogecoin, Feathercoin, ...)
  * ✓ __scrypt:N__
  * ✓ __scrypt-jane:N__
@@ -66,7 +67,6 @@ Algorithms
  * ? luffa (Joincoin, Doomcoin)
  * ? shavite3 (INKcoin)
  * ? xevan (BitSend [BSD])
- * ? argon2d (DarkSilk and Dynamic)
 
 #### Planned support for
  * *scrypt-jane* (YaCoin, CopperBars, Pennies, Tickets, etc..)
